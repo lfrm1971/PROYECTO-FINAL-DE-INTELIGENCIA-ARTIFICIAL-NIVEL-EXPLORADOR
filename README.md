@@ -1,235 +1,172 @@
-Predicción de Operaciones en XAUUSD usando Machine Learning
+README Comercial – Sistema de IA para Sugerencia de Operaciones en el Oro (XAUUSD)
+🟡 1. Resumen Ejecutivo
 
-(Compra / Venta / Neutral)
+Este proyecto presenta un sistema de Inteligencia Artificial aplicado al trading del oro (XAUUSD), capaz de predecir y sugerir operaciones de Compra, Venta o Neutral con alta precisión.
 
-🟡 1. Introducción
+La solución integra datos reales de MetaTrader 5, técnicas modernas de Machine Learning y una arquitectura de despliegue ligera, demostrando cómo la IA puede apoyar la toma de decisiones en mercados altamente volátiles.
 
-Este proyecto tiene como objetivo desarrollar un sistema de Machine Learning capaz de sugerir operaciones de compra, venta o neutral en el oro (XAUUSD), basándose en un conjunto de indicadores técnicos y señales generadas en MetaTrader 5 (MT5).
+El resultado final es un modelo capaz de clasificar operaciones con hasta 97% de exactitud, superando estrategias basadas únicamente en indicadores tradicionales.
 
-Se entrenaron y compararon 10 modelos de clasificación utilizando datos reales obtenidos mediante un Expert Advisor (EA).
-El propósito es demostrar cómo los modelos de IA pueden complementar el análisis técnico tradicional, proporcionando señales objetivas y consistentes.
+🟡 2. Problema a Resolver
 
-🟡 2. ¿Por qué el Oro (XAUUSD)?
+Los traders del oro suelen enfrentar desafíos como:
 
-El oro es uno de los activos más negociados del mundo debido a:
+✔ Altísima volatilidad en sesiones clave
 
-📌 Alta liquidez y volatilidad
+✔ Señales contradictorias entre indicadores
 
-📌 Activo refugio frente a crisis económicas
+✔ Dificultad para mantener consistencia en decisiones
 
-📌 Protección ante inflación
+✔ Sesgos emocionales en la entrada al mercado
 
-📌 Amplio uso en estrategias de trading intradía y swing
+Este proyecto busca resolver estas limitaciones mediante un sistema objetivo, basado en datos y libre de sesgos humanos, que entregue una recomendación clara antes de operar.
 
-Sin embargo, es importante recordar que operar oro implica riesgos debido a su comportamiento volátil y posible impacto de noticias macroeconómicas.
+🟡 3. Propuesta de Valor del Proyecto
+🔹 Decisiones más informadas
 
-🟡 3. Obtención de los Datos
+El sistema analiza múltiples indicadores simultáneamente, algo difícil de lograr de forma manual.
 
-Los datos fueron recolectados desde MetaTrader 5 mediante un Expert Advisor personalizado, el cual registró:
+🔹 Estabilidad y consistencia
 
-Velas (open, close, high, low)
+El modelo aprende patrones que se repiten en diferentes condiciones del mercado.
 
-Precios de entrada
+🔹 Velocidad
 
-Indicadores técnicos
+Predicciones en milisegundos, aptas para trading intradía y automatización futura.
 
-Señales generadas por cada indicador
+🔹 Aplicación inmediata
+
+Puede integrarse a dashboards, bots o estrategias híbridas con intervención humana.
+
+🟡 4. Metodología Utilizada
+1. Captura de datos reales (MT5)
+
+Un Expert Advisor personalizado registró:
+
+Precios OHLC
 
 Promedios móviles (SMA/EMA)
 
-Datos agrupados por hora
+Indicadores técnicos clásicos (RSI, MACD, ADX, CCI, Williams %R, Bull/Bear Power, etc.)
 
-📊 Tamaño del dataset
+Señales discretizadas de compra/venta
 
-27.083 registros
+Datos horario por vela
 
-Periodo de estudio según histórico de MT5
+2. Preparación y selección de variables
 
-🟡 4. Indicadores e Información Incluida
+Tras un análisis de correlación y multicolinealidad, se seleccionaron las señales de indicadores y medias móviles, por su alta relación con la dirección del mercado.
 
-Se calcularon los siguientes indicadores técnicos:
+3. Entrenamiento de modelos
 
-🔹 Promedios Móviles
+Se entrenaron 10 algoritmos de clasificación, incluyendo:
 
-SMA y EMA de 5, 10, 20, 50, 100 y 200 periodos
-
-Señales binarias:
-
-1 = compra
-
--1 = venta
-
-0 = neutral
-
-🔹 Indicadores Técnicos
-
-RSI
-
-MACD
-
-ADX
-
-Williams %R
-
-CCI
-
-High/Lows
-
-Bull Power / Bear Power
-
-Estocástico
-
-✔ Cada indicador generó señales discretizadas que se usan como features del modelo.
-
-🟡 5. Estructura del Dataset
-
-El dataset incluye más de 50 columnas, entre ellas:
-
-Valores OHLC
-
-Señales de indicadores
-
-Señales de promedios móviles
-
-Diferencias entre precios y medias
-
-Indicadores técnicos continuos
-
-Target: Acción (Compra / Venta / Neutral)
-
-La estructura permite alimentar modelos ML con información rica en tendencias y fuerza del mercado.
-
-🟡 6. Análisis Exploratorio y Selección de Variables
-🔍 Matriz de correlación
-
-La matriz muestra que las señales de indicadores y promedios móviles tienen una correlación moderada con la variable objetivo (aprox. 0.30 – 0.56).
-
-🟦 ¿Por qué se eligieron estas variables?
-
-✔ Ya están discretizadas → menos ruido
-✔ Baja multicolinealidad
-✔ Capturan dirección del mercado
-✔ A los modelos ML les gustan las variables categóricas con señal clara
-
-Estas características permiten entrenar modelos más estables y con mejor capacidad predictiva.
-
-🟡 7. Modelos de Machine Learning Aplicados
-
-Se entrenaron y evaluaron 10 modelos de clasificación:
-
-SVC
+Support Vector Classifier
 
 HistGradientBoosting
 
-GradientBoosting
-
-Logistic Regression
-
-Stochastic Gradient Descent
-
 XGBoost
-
-Decision Tree
 
 Random Forest
 
-ExtraTrees
+Logistic Regression
 
-GaussianNB
+4. Evaluación
 
-Todos obtuvieron métricas altas, destacándose:
+Se utilizaron métricas comerciales y técnicas:
 
-⭐ Mejor modelo según F1-Macro: SVC
+Accuracy
+
+Precision
+
+Recall
+
+F1-macro
+
+Matrices de confusión
+
+🟡 5. Resultados Más Relevantes
+
+Entre los modelos probados, se destaca:
+
+⭐ SVC (Support Vector Classifier)
 
 Accuracy: 0.97
 
-F1 macro: 0.98
+F1-macro: 0.98
 
-📘 Resultados por clase (SVC)
+Desempeño por clase:
 
-Compra → F1: 0.97
+Compra: 97% F1
 
-Neutral → F1: 1.00
+Neutral: 100% F1
 
-Venta → F1: 0.96
+Venta: 96% F1
 
-🟡 8. Comparación General de Modelos
-Modelo	Accuracy	F1-macro	Tiempo Entrenamiento (s)
-SVC	0.9688	0.9777	12.02
-HistGB	0.9677	0.9768	0.73
-GradientBoosting	0.9677	0.9768	3.46
-LogisticRegression	0.9656	0.9753	0.36
-XGBoost	0.9654	0.9752	0.96
-…	…	…	…
-🟡 9. Matrices de Confusión
+Sin embargo, para producción se eligió XGBoost, gracias a su mayor estabilidad y menor tiempo de predicción.
 
-Se generaron matrices de confusión para los 10 modelos, permitiendo visualizar:
+🟡 6. Prototipo Web Funcional
 
-Aciertos en Compra
+El modelo entrenado fue desplegado en una aplicación web que permite:
 
-Aciertos en Venta
+Ingresar valores de indicadores
 
-Errores clasificando Neutral
+Ejecución del modelo en tiempo real
 
-Falsos positivos/negativos por modelo
+Obtención de la recomendación de la IA
 
-Estas gráficas reforzaron la elección final del modelo de despliegue.
+🔗 Demo Web:
+https://lfrm1971.github.io/Trading_Oro_web/
 
-🟡 10. Modelo Seleccionado para Producción (XGBoost)
+Este prototipo demuestra la aplicabilidad inmediata del sistema.
 
-Aunque SVC fue el modelo de mayor rendimiento, para el despliegue se eligió:
+🟡 7. Impacto Comercial y de Negocio
 
-✔ XGBoost
+Este proyecto tiene potencial para integrarse en:
 
-Motivos:
+✔ Plataformas de análisis financiero
+✔ Sistemas automatizados de trading (EAs / bots)
+✔ Herramientas educativas para nuevos traders
+✔ Sistemas de alertas móviles o web
+✔ Departamentos de gestión de riesgo
 
-Excelente equilibrio precisión/recall
+Además, abre la puerta a soluciones más avanzadas basadas en:
 
-Soporta predicciones rápidas
+Algoritmos predictivos de series temporales
 
-Reaccionó mejor al dataset completo
+Estrategias algorítmicas completas
 
-Matriz de confusión más estable para casos minoritarios
+Backtesting automático
 
-El modelo se exportó y se integró en una aplicación web.
+Integración con APIs de trading real
 
-🟡 11. Despliegue Web
+🟡 8. Limitaciones y Lineamientos Éticos
 
-El modelo fue publicado en:
+El sistema no reemplaza al trader humano, sino que sirve como apoyo.
+Además:
 
-👉 https://lfrm1971.github.io/Trading_Oro_web/
+No gestiona riesgo (StopLoss, posición, lotaje)
 
-Funciones del sitio:
+No incorpora noticias ni volatilidad
 
-Cargar datos o parámetros
+No debe usarse como herramienta de inversión autónoma
 
-Visualizar señales generadas por el modelo
+Se enfatiza el uso educativo y de investigación.
 
-Interfaz ligera y accesible para usuarios sin conocimiento técnico
+🟡 9. Conclusiones
 
-🟡 12. Conclusiones del Proyecto
+Este proyecto demuestra que:
 
-El uso de datos provenientes de MT5 permitió entrenar un modelo robusto y cercano al trading real.
+La IA puede analizar señales técnicas con mayor consistencia que métodos tradicionales.
 
-Los indicadores discretizados (señales) mejoraron la estabilidad del modelo.
+Modelos como SVC y XGBoost ofrecen alto rendimiento para mercados volátiles.
 
-El SVC obtuvo el mejor rendimiento global (F1-macro ≈ 0.98).
+El despliegue web valida la viabilidad real del sistema.
 
-Para despliegue, el XGBoost mostró un balance óptimo entre rendimiento y velocidad.
+Es una base sólida para futuras investigaciones en trading algorítmico, IA financiera y sistemas expertos.
 
-El sistema es capaz de sugerir de manera confiable operaciones Compra / Venta / Neutral.
+🟡 10. Autor
 
-🟡 13. Límites y Próximos Pasos
-⚠ Limitaciones actuales
-
-No se aplicó gestión de riesgo (StopLoss dinámico, ATR, R-Multiple).
-
-El modelo se basa solo en indicadores técnicos.
-
-No incluye noticias, volatilidad ni patrones de precio.
-
-Dataset basado en un solo símbolo (XAUUSD) y un solo periodo.
-
-🚀 Futuras mejoras
-
-Incluir backtesting completo con capital inicial.
+Leo Restrepo
+Estudiante de Inteligencia Artificial
+Trader de XAUUSD – MT5
