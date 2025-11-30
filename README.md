@@ -1,4 +1,4 @@
-README Comercial – Sistema de IA para Sugerencia de Operaciones en el Oro (XAUUSD)
+Sistema de IA para Sugerencia de Operaciones en el Oro (XAUUSD)
 🟡 1. Resumen Ejecutivo
 
 Este proyecto presenta un sistema de Inteligencia Artificial aplicado al trading del oro (XAUUSD), capaz de predecir y sugerir operaciones de Compra, Venta o Neutral con alta precisión.
